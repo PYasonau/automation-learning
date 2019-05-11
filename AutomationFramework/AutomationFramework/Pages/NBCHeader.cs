@@ -39,37 +39,37 @@ namespace AutomationFramework.Pages
 
         public NBCPage ClickEpisodes()
         {
-            lnkShows.Click();
+            lnkEpisodes.Click();
             return new NBCPage(_driver);
         }
 
         public NBCPage ClickSchedule()
         {
-            lnkShows.Click();
+            lnkSchedule.Click();
             return new NBCPage(_driver);
         }
 
         public NBCPage ClickNewsSports()
         {
-            lnkShows.Click();
+            lnkNewsSports.Click();
             return new NBCPage(_driver);
         }
 
         public NBCPage ClickShop()
         {
-            lnkShows.Click();
+            lnkShop.Click();
             return new NBCPage(_driver);
         }
 
-        public NBCPage ClickApp()
+        public NBCAppPage ClickApp()
         {
-            lnkShows.Click();
-            return new NBCPage(_driver);
+            lnkApp.Click();
+            return new NBCAppPage(_driver);
         }
 
         public NBCPage ClickSearch()
         {
-            lnkShows.Click();
+            btnSearch.Click();
             return new NBCPage(_driver);
         }
         
