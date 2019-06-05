@@ -31,10 +31,10 @@ namespace AutomationFramework.Pages
             _driver = Driver;
         }
 
-        public NBCPage ClickSHows()
+        public ShowsPage ClickSHows()
         {
             lnkShows.Click();
-            return new NBCPage(_driver);
+            return new ShowsPage(_driver).WaitForPageLoaded();
         }
 
         public NBCPage ClickEpisodes()
