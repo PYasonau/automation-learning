@@ -39,7 +39,8 @@ namespace AutomationFramework.Tests
                 .ClickThrowback()
                 .ClickAll();
 
-            Assert.That(nbcShows.IsShowBlockByNameExist(nbcSerialName), Is.True, $"Сериала с именем {nbcSerialName} нет");
+            Assert.That(nbcShows.IsShowBlockByNameExist(nbcSerialName),
+                Is.True, $"Сериала с именем {nbcSerialName} нет");
 
             nbcShows.ClickOnShowBlockByName(nbcSerialName);
         }

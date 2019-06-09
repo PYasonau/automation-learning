@@ -42,10 +42,10 @@ namespace AutomationFramework.Pages
             return WaitForPageLoaded();
         }
 
-        public ShowsPage ClickOnShowBlockByName(string name)
+        public SerialPage ClickOnShowBlockByName(string name)
         {
             driver.FindElement(By.XPath(lnkShowBlockByText(name))).Click();
-            return WaitForPageLoaded();
+            return new SerialPage(driver).WaitForPageLoaded();
         }
 
         public bool IsShowBlockByNameExist(string name) => driver.FindElements(By.XPath(lnkShowBlockByText(name))).Count > 0;
