@@ -5,10 +5,8 @@ using System.Text;
 
 namespace AutomationFramework.Pages
 {
-    public class SerialPage
+    public class SerialPage : BasePage
     {
-        private IWebDriver driver;
-
         private const string btnAddToFavorite = "div.show-header__menu a.navigation__item__link--favorite-add";
         private const string btnCast = "a[href$='/cast']";
         private const string lstActors = ".shelf__tiles a";
@@ -19,10 +17,8 @@ namespace AutomationFramework.Pages
 
         private const string btnClosePopUp = ".modal__icon__exit";
 
-
-        public SerialPage(IWebDriver driver)
+        public SerialPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         public SerialPage ClosePopUpIfPresent()
@@ -34,13 +30,12 @@ namespace AutomationFramework.Pages
 
         public SerialPage WaitForPageLoaded()
         {
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
-            return this;
+            return (SerialPage)WaitForAnyPageLoaded();
         }
 
         public SerialPage ClickAddToFavorite()
         {
-            driver.FindElement(By.CssSelector(btnAddToFavorite)).Click();
+            WaitForElementPresent(By.CssSelector(btnAddToFavorite)).Click();
             return WaitForPageLoaded();
         }
 
@@ -48,12 +43,12 @@ namespace AutomationFramework.Pages
 
         public SerialPage ClickOnActor(string name)
         {
-            driver.FindElement(By.XPath(lnkActor(name))).Click();
+            WaitForElementPresent(By.XPath(lnkActor(name))).Click();
             return WaitForPageLoaded();
         }
         public SerialPage ClickCast()
         {
-            driver.FindElement(By.CssSelector(btnCast)).Click();
+            WaitForElementPresent(By.CssSelector(btnCast)).Click();
 
             return WaitForPageLoaded();
         }
@@ -62,7 +57,7 @@ namespace AutomationFramework.Pages
 
         public SerialPage ClickMoreButton()
         {
-            driver.FindElement(By.CssSelector(btnMore)).Click();
+            WaitForElementPresent(By.CssSelector(btnMore)).Click();
             return WaitForPageLoaded();
         }
          

@@ -48,7 +48,7 @@ namespace AutomationFramework.Tests
 
             serialPage.ClickAddToFavorite().ClosePopUpIfPresent().ClickCast();
 
-            Assert.That(serialPage.GetActorsCount(), Is.EqualTo(expectedActorsCount), "Actors count is not as expected");
+            Assert.That(() => serialPage.GetActorsCount(), Is.EqualTo(expectedActorsCount).After(30*1000, 1*1000), "Actors count is not as expected");
             Assert.That(serialPage.IsActorPresent(JamesSpader), Is.True, $"Actor {JamesSpader} is not present");
             Assert.That(serialPage.IsActorPresent(Mozhan), Is.True, $"Actor {Mozhan} is not present");
             Assert.That(serialPage.IsActorPresent(Hisham), Is.True, $"Actor {Hisham} is not present");

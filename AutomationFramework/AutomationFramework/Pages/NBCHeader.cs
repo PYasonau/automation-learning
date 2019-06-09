@@ -6,10 +6,8 @@ using System.Text;
 
 namespace AutomationFramework.Pages
 {
-    public class NBCHeader
+    public class NBCHeader : BasePage
     {
-        private IWebDriver _driver;
-
         private static string lnkShowsLocator = "a[href='/shows']";
         private static string lnkEpisodesLocator = "a[href='/video']";
         private static string lnkScheduleLocator = "a[href='/schedule']";
@@ -18,60 +16,22 @@ namespace AutomationFramework.Pages
         private static string lnkAppLocator = "a[href='/apps']";
         private static string btnSearchLocator = "[class$='search'] button";
 
-        private IWebElement lnkShows => _driver.FindElement(By.CssSelector(lnkShowsLocator));
-        private IWebElement lnkEpisodes => _driver.FindElement(By.CssSelector(lnkEpisodesLocator));
-        private IWebElement lnkSchedule => _driver.FindElement(By.CssSelector(lnkScheduleLocator));
-        private IWebElement lnkNewsSports => _driver.FindElement(By.CssSelector(lnkNewsSportsLocator));
-        private IWebElement lnkShop => _driver.FindElement(By.CssSelector(lnkShopLocator));
-        private IWebElement lnkApp => _driver.FindElement(By.CssSelector(lnkAppLocator));
-        private IWebElement btnSearch => _driver.FindElement(By.CssSelector(btnSearchLocator));
+        private IWebElement lnkShows => driver.FindElement(By.CssSelector(lnkShowsLocator));
+        private IWebElement lnkEpisodes => driver.FindElement(By.CssSelector(lnkEpisodesLocator));
+        private IWebElement lnkSchedule => driver.FindElement(By.CssSelector(lnkScheduleLocator));
+        private IWebElement lnkNewsSports => driver.FindElement(By.CssSelector(lnkNewsSportsLocator));
+        private IWebElement lnkShop => driver.FindElement(By.CssSelector(lnkShopLocator));
+        private IWebElement lnkApp => driver.FindElement(By.CssSelector(lnkAppLocator));
+        private IWebElement btnSearch => driver.FindElement(By.CssSelector(btnSearchLocator));
 
-        public NBCHeader(IWebDriver Driver)
+        public NBCHeader(IWebDriver driver): base(driver)
         {
-            _driver = Driver;
         }
 
         public ShowsPage ClickSHows()
         {
             lnkShows.Click();
-            return new ShowsPage(_driver).WaitForPageLoaded();
+            return new ShowsPage(driver).WaitForPageLoaded();
         }
-
-        public NBCPage ClickEpisodes()
-        {
-            lnkEpisodes.Click();
-            return new NBCPage(_driver);
-        }
-
-        public NBCPage ClickSchedule()
-        {
-            lnkSchedule.Click();
-            return new NBCPage(_driver);
-        }
-
-        public NBCPage ClickNewsSports()
-        {
-            lnkNewsSports.Click();
-            return new NBCPage(_driver);
-        }
-
-        public NBCPage ClickShop()
-        {
-            lnkShop.Click();
-            return new NBCPage(_driver);
-        }
-
-        public NBCAppPage ClickApp()
-        {
-            lnkApp.Click();
-            return new NBCAppPage(_driver);
-        }
-
-        public NBCPage ClickSearch()
-        {
-            btnSearch.Click();
-            return new NBCPage(_driver);
-        }
-        
     }
 }

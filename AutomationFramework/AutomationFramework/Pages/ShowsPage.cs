@@ -5,13 +5,11 @@ using System.Text;
 
 namespace AutomationFramework.Pages
 {
-    public class ShowsPage
+    public class ShowsPage : BasePage
     {
-        private IWebDriver driver;
 
-        public ShowsPage(IWebDriver driver)
+        public ShowsPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
         }
 
         private string lnkAll = "a[href='/shows/all']";
@@ -52,7 +50,7 @@ namespace AutomationFramework.Pages
 
         public ShowsPage WaitForPageLoaded()
         {
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
+            WaitForElementPresent(By.CssSelector(lnkUpcoming));
             return this;
         }
     }
