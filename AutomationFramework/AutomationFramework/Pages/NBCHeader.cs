@@ -16,7 +16,7 @@ namespace AutomationFramework.Pages
         private static string lnkAppLocator = "a[href='/apps']";
         private static string btnSearchLocator = "[class$='search'] button";
 
-        private IWebElement lnkShows => driver.FindElement(By.CssSelector(lnkShowsLocator));
+        private IWebElement lnkShows => WaitForElementPresent(By.CssSelector(lnkShowsLocator));
         private IWebElement lnkEpisodes => driver.FindElement(By.CssSelector(lnkEpisodesLocator));
         private IWebElement lnkSchedule => driver.FindElement(By.CssSelector(lnkScheduleLocator));
         private IWebElement lnkNewsSports => driver.FindElement(By.CssSelector(lnkNewsSportsLocator));

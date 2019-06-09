@@ -13,11 +13,10 @@ namespace AutomationFramework.Tests
     {
         protected IWebDriver Driver1;
         protected IWebDriver Driver2;
+
         [SetUp]
         public void CreateDrivers()
         {
-            Driver1 = new RemoteWebDriver(new ChromeOptions { });
-            Driver1.Manage().Window.Maximize();
         }
 
         [TearDown]
@@ -27,5 +26,15 @@ namespace AutomationFramework.Tests
             Driver2?.Quit();
         }
 
+        public IWebDriver CreateDriver()
+        {
+            return new ChromeDriver();
+        }
+
+        public void NavigateToSite(IWebDriver driver)
+        {
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("https://www.nbc.com");
+        }
     }
 }

@@ -8,36 +8,24 @@ using System.Text;
 
 namespace AutomationFramework.Tests
 {
-    public class HT6
+    public class HT6 : BaseTest
     {
-        private IWebDriver driver;
-        private string nbcUrl = "https://www.nbc.com";
         private string nbcSerialName = "The Blacklist";
 
-        [SetUp]
-        public void CreateDriver()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(nbcUrl);
-        }
-
-        [TearDown]
-        public void QuitDriver()
-        {
-            driver?.Quit();
-        }
-
         [Test]
+        [Category("Functional")]
         public void HT6Test()
         {
+            Driver1 = CreateDriver();
+            NavigateToSite(Driver1);
+
             var expectedActorsCount = 7;
             var JamesSpader = "James Spader";
             var Mozhan = "Mozhan Marnò";
             var Hisham = "Hisham Tawfiq ";
             var Megan = "Megan Boone";
 
-            var headerPage = new NBCHeader(driver);
+            var headerPage = new NBCHeader(Driver1);
             var nbcShows = headerPage
                 .ClickSHows();
 
@@ -48,11 +36,14 @@ namespace AutomationFramework.Tests
 
             serialPage.ClickAddToFavorite().ClosePopUpIfPresent().ClickCast();
 
-            Assert.That(() => serialPage.GetActorsCount(), Is.EqualTo(expectedActorsCount).After(30*1000, 1*1000), "Actors count is not as expected");
-            Assert.That(serialPage.IsActorPresent(JamesSpader), Is.True, $"Actor {JamesSpader} is not present");
-            Assert.That(serialPage.IsActorPresent(Mozhan), Is.True, $"Actor {Mozhan} is not present");
-            Assert.That(serialPage.IsActorPresent(Hisham), Is.True, $"Actor {Hisham} is not present");
 
+            Assert.Multiple(() =>
+            {
+                Assert.That(() => serialPage.GetActorsCount(), Is.EqualTo(expectedActorsCount).After(30 * 1000, 1 * 1000), "Actors count is not as expected");
+                Assert.That(serialPage.IsActorPresent(JamesSpader), Is.True, $"Actor {JamesSpader} is not present");
+                Assert.That(serialPage.IsActorPresent(Mozhan), Is.True, $"Actor {Mozhan} is not present");
+                Assert.That(serialPage.IsActorPresent(Hisham), Is.True, $"Actor {Hisham} is not present");
+            });
             serialPage.ClickOnActor(Megan).ClickMoreButton();
 
             Assert.That(serialPage.IsLessButtonDisplayed(), Is.True, "Button Less is not present");

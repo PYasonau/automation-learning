@@ -8,30 +8,18 @@ using System.Text;
 
 namespace AutomationFramework.Tests
 {
-    public class HT52
+    public class HT52 : BaseTest
     {
-        private IWebDriver driver;
-        private string nbcUrl = "https://www.nbc.com";
         private string nbcSerialName = "The Blacklist";
 
-        [SetUp]
-        public void CreateDriver()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(nbcUrl);
-        }
-
-        [TearDown]
-        public void QuitDriver()
-        {
-            driver?.Quit();
-        }
-
         [Test]
+        [Description("New Description")]
         public void HT52Test()
         {
-            var headerPage = new NBCHeader(driver);
+            Driver1 = CreateDriver();
+            NavigateToSite(Driver1);
+
+            var headerPage = new NBCHeader(Driver1);
             var  nbcShows = headerPage
                 .ClickSHows()
                 .ClickCurrent()
