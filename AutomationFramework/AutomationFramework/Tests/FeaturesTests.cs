@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using NUnit.Allure.Core;
+using NUnit.Allure.Steps;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +12,18 @@ namespace AutomationFramework.Tests
 
         public class PassTest : BaseTest
         {
+            [AllureStep]
+            public void allureStep()
+            {
+                Console.WriteLine("this is from methods");
+            }
+
             [Test]
             public void Passed()
             {
-                Assert.Pass("this test will pass");
+                allure.WrapInStep(() => Assert.True(true, "Assert pass action"));
+                allureStep();
+                allure.WrapInStep(() => Assert.Fail("this test will pass"), "Assert fail action");
             }
         }
 
