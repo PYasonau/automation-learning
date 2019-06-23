@@ -53,7 +53,7 @@ namespace AutomationFramework.Tests
 
         public IWebDriver CreateDriver()
         {
-            return new ChromeDriver();
+            return new RemoteWebDriver(new ChromeOptions { });
         }
 
         public void NavigateToSite(IWebDriver driver)
